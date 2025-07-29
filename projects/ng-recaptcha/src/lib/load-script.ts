@@ -9,6 +9,7 @@ declare global {
 export type RenderMode = "explicit" | { key: string };
 
 function loadScript(
+  this: void, // Prevents incorrect usage - this function is not dependent on any this context.
   renderMode: RenderMode,
   onBeforeLoad: (url: URL) => { url: URL; nonce?: string },
   onLoaded: (grecaptcha: ReCaptchaV2.ReCaptcha) => void,
@@ -42,14 +43,17 @@ function loadScript(
   document.head.appendChild(script);
 }
 
-function newLoadScript({
-  v3SiteKey,
-  onBeforeLoad,
-  onLoaded,
-}: { v3SiteKey: string | undefined; onLoaded(recaptcha: ReCaptchaV2.ReCaptcha): void } & Pick<
-  Required<RecaptchaLoaderOptions>,
-  "onBeforeLoad"
->) {
+function newLoadScript(
+  this: void,
+  {
+    v3SiteKey,
+    onBeforeLoad,
+    onLoaded,
+  }: { v3SiteKey: string | undefined; onLoaded(recaptcha: ReCaptchaV2.ReCaptcha): void } & Pick<
+    Required<RecaptchaLoaderOptions>,
+    "onBeforeLoad"
+  >,
+) {
   const renderMode: RenderMode = v3SiteKey ? { key: v3SiteKey } : "explicit";
 
   loader.loadScript(renderMode, onBeforeLoad, onLoaded);
