@@ -1,7 +1,7 @@
 {
   "name": "@agorapulse/ng-recaptcha",
   "description": "Angular component for Google reCAPTCHA for Angular v18 and onwards",
-  "version": "20.0.0",
+  "version": "21.0.0",
   "author": "Ruslan Arkhipau <dethariel@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -14,10 +14,10 @@
     "recaptcha",
     "angular-recaptcha",
     "ng-recaptcha",
-    "angular-20"
+    "angular-21"
   ],
   "peerDependencies": {
-    "@angular/core": "^20.0.1"
+    "@angular/core": "^21.0.0"
   },
   "dependencies": {
     "@types/grecaptcha": "^3.0.9",
