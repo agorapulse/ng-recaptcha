@@ -1,4 +1,4 @@
-import { Component, NgZone } from "@angular/core";
+import { Component, NgZone, provideZoneChangeDetection } from "@angular/core";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { UntypedFormControl, UntypedFormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { By } from "@angular/platform-browser";
@@ -32,6 +32,9 @@ describe("RecaptchaValueAccessorDirective -> [(ngModel)]", () => {
       declarations: [RecaptchaValueAccessorDirective, RecaptchaComponent, TestComponent],
       imports: [FormsModule, ReactiveFormsModule],
       providers: [
+        // Angular 21 TestBed defaults to zoneless; these specs mutate plain component
+        // properties between detectChanges calls, which only zone-based CD picks up.
+        provideZoneChangeDetection(),
         {
           provide: RecaptchaLoaderService,
           useValue: mockRecaptchaLoaderService,
