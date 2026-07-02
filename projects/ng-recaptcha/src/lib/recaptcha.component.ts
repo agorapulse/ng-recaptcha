@@ -51,13 +51,13 @@ export class RecaptchaComponent implements AfterViewInit, OnDestroy {
   @Output() public errored = new EventEmitter<RecaptchaErrorParameters>();
 
   /** @internal */
-  private subscription: Subscription;
+  private subscription!: Subscription;
   /** @internal */
-  private widget: number;
+  private widget!: number;
   /** @internal */
-  private grecaptcha: ReCaptchaV2.ReCaptcha;
+  private grecaptcha!: ReCaptchaV2.ReCaptcha;
   /** @internal */
-  private executeRequested: boolean;
+  private executeRequested!: boolean;
 
   constructor(
     private elementRef: ElementRef<HTMLElement>,

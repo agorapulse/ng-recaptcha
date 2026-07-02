@@ -16,10 +16,10 @@ import { RecaptchaComponent } from "./recaptcha.component";
 })
 export class RecaptchaValueAccessorDirective implements ControlValueAccessor {
   /** @internal */
-  private onChange: (value: string | null) => void;
+  private onChange!: (value: string | null) => void;
 
   /** @internal */
-  private onTouched: () => void;
+  private onTouched!: () => void;
 
   private requiresControllerReset = false;
 
@@ -40,7 +40,7 @@ export class RecaptchaValueAccessorDirective implements ControlValueAccessor {
     }
   }
 
-  public registerOnChange(fn: (value: string) => void): void {
+  public registerOnChange(fn: (value: string | null) => void): void {
     this.onChange = fn;
     if (this.requiresControllerReset) {
       this.requiresControllerReset = false;
@@ -51,7 +51,7 @@ export class RecaptchaValueAccessorDirective implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  @HostListener("resolved", ["$event"]) public onResolve($event: string): void {
+  @HostListener("resolved", ["$event"]) public onResolve($event: any): void {
     if (this.onChange) {
       this.onChange($event);
     }
