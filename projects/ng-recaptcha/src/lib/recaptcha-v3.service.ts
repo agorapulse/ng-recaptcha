@@ -44,16 +44,16 @@ export class ReCaptchaV3Service {
   /** @internal */
   private actionBacklog: ActionBacklogEntry[] | undefined;
   /** @internal */
-  private grecaptcha: ReCaptchaV2.ReCaptcha;
+  private grecaptcha!: ReCaptchaV2.ReCaptcha;
 
   /** @internal */
-  private onExecuteSubject: Subject<OnExecuteData>;
+  private onExecuteSubject!: Subject<OnExecuteData>;
   /** @internal */
-  private onExecuteErrorSubject: Subject<OnExecuteErrorData>;
+  private onExecuteErrorSubject!: Subject<OnExecuteErrorData>;
   /** @internal */
-  private onExecuteObservable: Observable<OnExecuteData>;
+  private onExecuteObservable!: Observable<OnExecuteData>;
   /** @internal */
-  private onExecuteErrorObservable: Observable<OnExecuteErrorData>;
+  private onExecuteErrorObservable!: Observable<OnExecuteErrorData>;
 
   constructor(
     zone: NgZone,
